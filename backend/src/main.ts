@@ -47,7 +47,7 @@ app.post('/videos', async (req: Request, res: Response) => {
 
 app.put('/videos', async (req: Request, res: Response) => {
     try {
-        if(await db.setVideos(JSON.parse(req.body) as Video[])) {
+        if(await db.setVideos(req.body as Video[])) {
             res.status(200).send("Videos set.");
         }
     } catch(err) {
