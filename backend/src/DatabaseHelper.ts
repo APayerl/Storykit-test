@@ -33,6 +33,10 @@ export class DatabaseHelper implements VideoStore, UserStorage {
     }
     getUserFromAccessToken(token: string): Promise<User> {
         return new Promise((resolve, reject) => {
+            if(token === "valid") {
+                resolve({} as User);
+                return;
+            }
             //Fakes login info. Changes between a valid user, not valid user and a db error
             switch(randomInt(0, 3)) {
                 case 0:

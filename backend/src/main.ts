@@ -58,18 +58,16 @@ app.put('/videos', async (req: Request, res: Response) => {
 app.patch('/videos/:id', async (req: Request, res: Response) => {
     try {
         let vid: any = await db.getVideo(Number(req.params.id));
-        console.log(vid);
         Object.getOwnPropertyNames(req.body).forEach(property => { 
             vid[property] = req.body[property];
         });
-        console.log(vid);
+        await db.deleteVideo(Number(req.params.id));
         if(await db.addVideo(vid)) {
-            db.deleteVideo(Number(req.params.id));
             res.status(200).send("Video updated.");
         }
     } catch(err) {
         console.log(err);
-        //TODO Should actually do more error checking here... Since now we could have a duplicate...
+        //TODO Should actually do more error checking here... Since now we could have a duplicate if the video was'nt deleted before insert...
         res.status(500).send("Unable to complete action at this time, please try again later!");
     }
 });
