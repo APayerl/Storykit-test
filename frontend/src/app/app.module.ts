@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { VideoListComponent } from './video-list/video-list.component';
 import { VideoComponent } from './video/video.component';
 
+import { NgxFileHelpersModule } from 'ngx-file-helpers';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -16,6 +18,7 @@ import { VideoComponent } from './video/video.component';
     imports: [
         BrowserModule,
         HttpClientModule,
+        NgxFileHelpersModule,
         AppRoutingModule
     ],
     providers: [],

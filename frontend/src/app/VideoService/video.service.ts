@@ -19,4 +19,10 @@ export class VideoService {
         const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8').set("accesstoken", "valid");
         return this.http.patch(this.BASE_URL + `/${id}`, { "grade": grade }, { headers, observe: 'response', responseType: "text"}).toPromise();
     }
+
+    async setVideos(videos: Video[]): Promise<Video[]> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8').set("accesstoken", "valid");
+        await this.http.put(this.BASE_URL, videos, { headers, responseType: "text"}).toPromise()
+        return this.getVideos();
+    }
 }

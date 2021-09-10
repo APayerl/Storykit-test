@@ -1,0 +1,18 @@
+footer {
+    width: 100%;
+    position: fixed; 
+    left: 0; 
+    bottom: 0;
+
+    * {
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+    p {
+        width: fit-content;
+    }
+    img {
+        height: 20px; 
+        width: auto;
+    }
+}

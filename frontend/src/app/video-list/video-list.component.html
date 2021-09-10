@@ -1,4 +1,6 @@
-<p>Search <input type="search" (keyup)="searchVideo($event)" (change)="searchVideo($event)"></p>
+<p>Search: <input type="search" (keyup)="searchVideo($event)" (change)="searchVideo($event)"></p>
+<button type="button" ngxFilePicker accept=".json" [readMode]="readmode" (filePick)="onFilePicked($event)">Upload file with movies!</button>
+<br/>
 <div *ngFor="let video of filteredVideos">
     <app-video [video]="video"></app-video>
 </div>

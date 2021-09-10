@@ -1,4 +1,5 @@
-<div *ngIf="video">    
+<div *ngIf="video">
+    <img src="{{image_url}}" />
     <h4>{{video.title}}</h4>
     <p>Grade: <input (change)="onInputChange(video.id, $event)" id="gradeChanger" min="1" max="5" value="{{video.grade | number}}" type="number"></p>
 </div>
