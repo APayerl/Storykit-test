@@ -11,7 +11,7 @@ export class VideoListComponent implements OnInit {
     constructor(public videoService: VideoService) { }
 
     videos: Video[] = [];
-    filter: any = (tx: Video) => tx.title.startsWith("");
+    filter: any = (tx: Video) => tx.title.includes("");
     get filteredVideos(): Video[] {
         return this.videos.filter(this.filter);
     }
@@ -24,6 +24,6 @@ export class VideoListComponent implements OnInit {
 
     searchVideo(event: any) {
         console.log(event.target.value);
-        this.filter = (tx: Video) => tx.title.startsWith(event.target.value);
+        this.filter = (tx: Video) => tx.title.includes(event.target.value);
     }
 }
