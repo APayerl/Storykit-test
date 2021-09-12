@@ -1,5 +1,5 @@
 FROM node:latest
-WORKDIR /usr/src/app
+WORKDIR /usr/local/app
 COPY package*.json ./
 COPY . .
 RUN npm ci --only=production
