@@ -17,7 +17,7 @@ export class VideoComponent implements OnInit {
 
     ngOnInit(): void {
         this.httpClient.get<TmdbSearchResult>("https://api.themoviedb.org/3/search/movie?api_key=1bc5e358416e7f216df6957afcf5ab90&query=" + this.video?.title.replace(" ", "+")).toPromise().then(json => {
-            this.image_url = `http://image.tmdb.org/t/p/w500/${json.results[0].poster_path}`;
+            this.image_url = json.total_results > 0 ? `http://image.tmdb.org/t/p/w500/${json.results[0].poster_path}` : "";
         });
     }
 
