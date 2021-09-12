@@ -1,0 +1,24 @@
+# Use root/example as user/password credentials
+version: "3.1"
+
+services:
+    db:
+        image: mariadb
+        restart: always
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: storykit
+    frontend:
+        image: storykit_test/frontend:latest
+        restart: always
+        ports:
+            - 8080:8080
+    backend:
+        image: storykit_test/backend:latest
+        restart: always
+        ports:
+            - 3000:3000
+        environment:
+            PORT: 3000
+        command: node build/main.js
