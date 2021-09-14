@@ -7,9 +7,15 @@ app.use(express.json());
 
 let db = new DatabaseHelper();
 
+const freePaths: string[] = []
+
 const authentication = async (req: Request, res: Response, next: NextFunction) => {
     //TODO Do we want to check authentication? 
-    // Should probably do some sqlinjection and RCE protection also...
+    if(freePaths.includes(req.path)) {
+        next();
+        return;
+    }
+    // Should probably do some RCE protection also...
     let user;
     try {
         if(req.headers.accesstoken == undefined) {
@@ -61,13 +67,11 @@ app.patch('/videos/:id', async (req: Request, res: Response) => {
         Object.getOwnPropertyNames(req.body).forEach(property => { 
             vid[property] = req.body[property];
         });
-        await db.deleteVideo(Number(req.params.id));
-        if(await db.addVideo(vid)) {
+        if(await db.replaceVideo(vid.id, vid)) {
             res.status(200).send("Video updated.");
         }
     } catch(err) {
-        console.log(err);
-        //TODO Should actually do more error checking here... Since now we could have a duplicate if the video was'nt deleted before insert...
+        console.error(err);
         res.status(500).send("Unable to complete action at this time, please try again later!");
     }
 });

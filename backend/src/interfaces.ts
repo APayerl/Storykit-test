@@ -12,7 +12,7 @@ export interface VideoStore {
     getAllVideos(): Promise<Video[]>;
     addVideo(vid: Video): Promise<boolean>;
     setVideos(videos: Video[]): Promise<boolean>;
-    deleteVideo(id: number): Promise<boolean>;
+    replaceVideo(id: number, vid: Video): Promise<boolean>;
     getVideo(id: number): Promise<Video>;
 }
 
